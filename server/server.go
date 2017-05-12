@@ -15,7 +15,7 @@ const (
 	HOST = "localhost"
 	PORT = "6969"
 	TYPE = "tcp"
-	FILE = "/Users/jdm/todo.txt-test"
+	FILE = os.Getenv("HOME")+"/todo.txt-test"
 )
 
 var todo []string
