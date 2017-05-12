@@ -15,16 +15,16 @@ const (
 	HOST = "localhost"
 	PORT = "6969"
 	TYPE = "tcp"
-	FILE = os.Getenv("HOME")+"/todo.txt-test"
 )
 
+var file = os.Getenv("HOME")+"/todo.txt-test"
 var todo []string
 var txt string
 var conn net.Conn
 func main(){
 	//list := []string
 
-	dat, err := ioutil.ReadFile(FILE)
+	dat, err := ioutil.ReadFile(file)
 	txt = string(dat)
 	todo = strings.Split(txt, "\n")
 
@@ -96,13 +96,13 @@ func add(s string) {
 	print("add:", s)
 	todo = append(todo, s)
 	txt = strings.Join(todo, "\n")
-	_ = ioutil.WriteFile(FILE, []byte(txt+"\n"), 0644)
+	_ = ioutil.WriteFile(file, []byte(txt+"\n"), 0644)
 }
 
 func rm(s string){
 	i, _ := strconv.Atoi(s)
 	todo[i] = ""
-	while(todo[len(todo)-1] == "") {
+	for !(todo[len(todo)-1] == "") {
 		todo = todo[0:len(todo)-1]
 	}
 }
